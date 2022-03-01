@@ -5,68 +5,57 @@ import 'package:chithram_netflix_tmdb/screens/home_screen.dart';
 import 'package:chithram_netflix_tmdb/screens/laughing_screen.dart';
 import 'package:flutter/material.dart';
 
-class TabContainerBottom extends StatefulWidget {
-  TabContainerBottom({this.index1});
-  int? index1;
+ValueNotifier<int> currentIndex = ValueNotifier(0);
 
-  @override
-  _TabContainerBottomState createState() => _TabContainerBottomState();
-}
-
-class _TabContainerBottomState extends State<TabContainerBottom> {
-  int tabIndex = 0;
-
-  late final List<Widget>? listScreens;
-  @override
-  void initState() {
-    print("tabindex is $tabIndex");
-    int? tabIndex1 = widget.index1;
-    print("tabindex1 from widget is  is $tabIndex1");
-    tabIndex = widget.index1??0;
-    print("tabindex after checking $tabIndex");
-    super.initState();
-    listScreens = [HomeScreen(), GameScreen(), CommingSoon(),FastLaugh(),DownloadScreen()];
-  }
-
+class TabContainerBottom extends StatelessWidget {
+  final listScreens = [
+    HomeScreen(),
+    GameScreen(),
+    CommingSoon(),
+    FastLaugh(),
+    DownloadScreen()
+  ];
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: listScreens![tabIndex],
-      bottomNavigationBar: BottomNavigationBar(
-        // fixedColor: Colors.red,
-        backgroundColor: const Color.fromARGB(0, 36, 36, 182),
-          selectedItemColor: Colors.black,
-          unselectedItemColor: Colors.black54,
-         
-          currentIndex: tabIndex,
-          onTap: (int index) {
-            setState(() {
-              tabIndex = index;
-            });
-          },
-          items: [
-            const BottomNavigationBarItem(
-              icon: const Icon(Icons.home),
-              label: 'Home',
-            ),
-            const BottomNavigationBarItem(
-              icon: const Icon(Icons.gamepad_outlined),
-              label: "Game",
-            ),
-            const BottomNavigationBarItem(
-              icon: const Icon(Icons.movie),
-              label: "New & Hot",
-            ),
-                const BottomNavigationBarItem(
-              icon: const Icon(Icons.play_circle_fill_rounded),
-              label: "Fast Laugh",
-            ),
-                const BottomNavigationBarItem(
-              icon: const Icon(Icons.download_for_offline_rounded),
-              label: "Downloads",
-            ),
-          ]),
-      backgroundColor: Theme.of(context).primaryColor,
-    );
+    return ValueListenableBuilder(
+        valueListenable: currentIndex,
+        builder: (context,int  newIndex, _) {
+          return Scaffold(
+            body: listScreens[newIndex],
+            bottomNavigationBar: BottomNavigationBar(
+                currentIndex: newIndex,
+                type: BottomNavigationBarType.fixed,
+                // fixedColor: Colors.red,
+                backgroundColor: Colors.black,
+                selectedItemColor: Colors.white,
+                unselectedItemColor: Colors.grey,
+                onTap: (int index) {
+                  currentIndex.value = index;
+                },
+                items: [
+                  const BottomNavigationBarItem(
+                    icon: const Icon(Icons.home),
+                    label: 'Home',
+                  ),
+                  const BottomNavigationBarItem(
+                    icon: const Icon(Icons.gamepad_outlined),
+                    label: "Game",
+                  ),
+                  const BottomNavigationBarItem(
+                    icon: const Icon(Icons.collections),
+                    label: "New & Hot",
+                  ),
+                  const BottomNavigationBarItem(
+                    icon: const Icon(Icons.emoji_emotions),
+                    label: "Fast Laugh",
+                  ),
+                  const BottomNavigationBarItem(
+                    icon: const Icon(Icons.download_for_offline_rounded),
+                    label: "Downloads",
+                  ),
+                ]),
+            backgroundColor: Colors.black,
+          );
+        });
   }
 }

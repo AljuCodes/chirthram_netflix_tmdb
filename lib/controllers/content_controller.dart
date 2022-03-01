@@ -38,6 +38,7 @@ class ContentController extends GetxController {
   Future<List<dynamic>> getTrending() async {
     Map trendingResult = await tmdbData!.v3.trending.getTrending();
     trending = trendingResult["results"];
+    print("lll$trending");
     return trending;
   }
 

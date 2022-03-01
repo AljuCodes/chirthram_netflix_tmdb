@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:chithram_netflix_tmdb/main.dart';
 import 'package:chithram_netflix_tmdb/screens/splash_screen.dart';
+import 'package:chithram_netflix_tmdb/widget/stack_card.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -40,7 +41,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           CategoryText("Upcoming Movies"),
                           UpComingMovies(height: height, width: width),
                           CategoryText("Trending Now"),
-                          TrendingNow(height: height, width: width),
+                         StackCard()
                         ],
                       ),
                     );
