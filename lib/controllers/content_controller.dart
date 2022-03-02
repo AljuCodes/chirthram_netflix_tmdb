@@ -34,7 +34,11 @@ class ContentController extends GetxController {
     // print("111 tv shows is  ${tvShows}");
     return tmdbData!;
   }
-
+Future<List<dynamic>> GetCategories()async{
+  final map1 = await tmdbData!.v3.genres.getTvlist();
+final list = map1["genres"];
+  return list;
+}
   Future<List<dynamic>> getTrending() async {
     Map trendingResult = await tmdbData!.v3.trending.getTrending();
     trending = trendingResult["results"];

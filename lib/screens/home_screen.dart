@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:chithram_netflix_tmdb/main.dart';
 import 'package:chithram_netflix_tmdb/screens/splash_screen.dart';
+import 'package:chithram_netflix_tmdb/widget/showinfo.dart';
 import 'package:chithram_netflix_tmdb/widget/stack_card.dart';
 import 'package:flutter/material.dart';
 
@@ -334,18 +335,23 @@ class firstStack extends StatelessWidget {
               children: [
                 Text1("TV Shows"),
                 Text1("Movies"),
-                Row(
-                  children: [
-                    Text1("Categories"),
-                    IconButton(
-                      onPressed: () {},
-                      icon: Icon(
-                        Icons.arrow_drop_down,
-                        color: Colors.white,
-                        size: 30,
+                InkWell(
+                  onTap: (){
+                    showInformationDialog(context, "Home");
+                  },
+                  child: Row(
+                    children: [
+                      Text1("Categories"),
+                      IconButton(
+                        onPressed: () {},
+                        icon: Icon(
+                          Icons.arrow_drop_down,
+                          color: Colors.white,
+                          size: 30,
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 )
               ],
             ),

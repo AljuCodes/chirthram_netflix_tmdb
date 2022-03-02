@@ -93,35 +93,37 @@ class _CommingSoonState extends State<CommingSoon> {
             ),
           ),
           isComing
-              ? FutureBuilder<List<dynamic>>(
-                  future: contentController.getUpComming(),
-                  builder: (context, snapshot) {
-                    if (snapshot.hasData) {
-                      final upcomingList = snapshot.data;
-                      return Column(
-                        children: [
-                          Container(
-                            height: height,
-                            child: ListView.builder(
-                                itemCount: upcomingList!.length,
-                                itemBuilder: (context, index) {
-                           
-                                  return CommingListViews(
-                                    height: height,
-                                    uri: upcomingList[index]["backdrop_path"],
-                                    name: upcomingList[index]
-                                            ['original_title'] ??
-                                        "ww",
-                                    date: upcomingList[index]["release_date"],
-                                    subtitle: upcomingList[index]["overview"],
-                                  );
-                                }),
-                          ),
-                        ],
-                      );
-                    }
-                    return Center(child: CircularProgressIndicator());
-                  })
+              ? Center(
+                child: FutureBuilder<List<dynamic>>(
+                    future: contentController.getUpComming(),
+                    builder: (context, snapshot) {
+                      if (snapshot.hasData) {
+                        final upcomingList = snapshot.data;
+                        return Column(
+                          children: [
+                            Container(
+                              height: height,
+                              child: ListView.builder(
+                                  itemCount: upcomingList!.length,
+                                  itemBuilder: (context, index) {
+                             
+                                    return CommingListViews(
+                                      height: height,
+                                      uri: upcomingList[index]["backdrop_path"],
+                                      name: upcomingList[index]
+                                              ['original_title'] ??
+                                          "ww",
+                                      date: upcomingList[index]["release_date"],
+                                      subtitle: upcomingList[index]["overview"],
+                                    );
+                                  }),
+                            ),
+                          ],
+                        );
+                      }
+                      return Center(child: CircularProgressIndicator());
+                    }),
+              )
               : FutureBuilder<List<dynamic>>(
                   future: contentController.getTrending(),
                   builder: (context, snapshot) {
