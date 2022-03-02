@@ -9,7 +9,7 @@ class MovieAuth {
 
 class ContentController extends GetxController {
   String homePoster =
-      "http://m.gettywallpapers.com/wp-content/uploads/2020/08/Money-Heist-Wallpaper-576x1024.jpg";
+      "https://m.media-amazon.com/images/M/MV5BZjgwOGI3ZWEtNjBiMy00ZjM3LWFkNWYtNmU1MzY1ZGZkMDU2XkEyXkFqcGdeQXVyMTEyMjM2NDc2._V1_.jpg";
   List trending = [];
   List popularMovies = [];
   List tvShows = [];

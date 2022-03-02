@@ -279,10 +279,8 @@ class firstStack extends StatelessWidget {
           width: double.infinity,
           height: height * 0.7,
           decoration: const BoxDecoration(),
-          child: Image.network(
-            contentController.homePoster,
-            fit: BoxFit.cover,
-          ),
+          child: Image(image: AssetImage("lib/assets/img/home_poster.jpg",
+          ),fit: BoxFit.cover),
         ),
         Positioned(
           top: 30,
